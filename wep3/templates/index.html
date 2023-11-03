@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+</head>
+
+<body>
+    <!-- 여기에 이미지를 추가합니다 -->
+    <img src="{{ url_for('static', filename='image/header.png') }}" alt="헤더 이미지" id="header-image">
+
+    <!-- 왼쪽 사이드 이미지 -->
+
+    <img src="{{ url_for('static', filename='image/l side.png') }}" alt="Left side image" id="left-side">
+
+
+    <form method="POST">
+        <div id="container">
+            <div id="search-form">
+                <form id="search-form" onsubmit="return search(event)">
+                    <div id="input-group">
+                        <input type="text" id="search-input" placeholder="URL입력..." name="url">
+                        <button type="submit" id="summary-button">search</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- <div id="result-container"> -->
+                <!-- <div id="result-box">result</div> -->
+                <div id="search-results">
+
+
+
+                    <!-- 원문 출력 -->
+                    <!-- <h2>Ori</h2>
+                <h3>{{text}}</h3> -->
+
+                    <h2>Result</h2>
+
+                    <h3 id="chat-log">
+                        <!-- 대화 내용이 여기에 추가됩니다. -->
+                    </h3>
+            
+
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+                    <script>
+                
+                        function appendMessage(content) {
+                            $('#chat-log').empty(); // 대화 로그 초기화
+                            $('#chat-log').append(content);
+                        }
+                        
+                
+                        function getMessages() {
+                            $.get('/get_messages', function(data) {
+                                messages = JSON.parse(data);
+                                var lastMessage = messages[messages.length - 1];
+                                var num;
+                                var all_Message = '';
+                                
+                                for (num = 1; num < messages.length; num++) {
+                                    all_Message += messages[num].content;
+                                }
+                                
+                                appendMessage(all_Message);
+                            });
+                        }
+                
+                        $(document).ready(function() {
+                            // 주기적으로 새 메시지 확인
+                            setInterval(getMessages, 100);
+                        });
+                    </script>
+                
+                <!-- </div>
+            </div> -->
+        </div>
+    </form>
+    <!-- 오른쪽 사이드 이미지 -->
+
+    <img src="{{ url_for('static', filename='image/r side.png') }}" alt="Right side image" id="right-side">
+
+
+    <!-- 푸터에 이미지 추가 -->
+    <img src="{{ url_for('static', filename='image/footer.png') }}" alt="푸터 이미지" id="footer-image">
+
+</body>
+
+</html>

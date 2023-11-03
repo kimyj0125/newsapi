@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Input Example</title>
+</head>
+
+<body>
+    <form action="/result" method="post">
+        <label for="input_data">Enter something:</label>
+        <input type="text" id="input_data" name="input_data">
+        <input type="submit" value="Submit">
+    </form>
+    {% for link in message %}
+    <p>{{ link }}</p>
+    {% endfor %}
+</body>
+
+</html>
